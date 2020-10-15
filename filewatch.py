@@ -20,7 +20,7 @@ def validatesections(sectionname):
     sectionrequired=['keyname','action','chroot']
     sectionoptionals=['destination','uid']
     if sectionname.upper() != 'DEFAULT':
-        
+
         logging.info('Checking ' + sectionname.upper() + ' for required keys.')
         for keycheck in sectionrequired:
             if not cfg[sectionname][keycheck]:
@@ -41,7 +41,7 @@ def cleanuppaths(chroot,targetfilepath,targetfilename):
     if targetfilepath.startswith(chroot) and targetfilepath.endswith(targetfilename):
         if os.path.exists(targetfilepath) and os.path.isfile(targetfilepath):
                 return targetfilepath
-    else: 
+    else:
         targetfullpath = os.path.join(chroot, targetfilename)
         if not os.path.exists(targetfullpath):
             logging.error('ERROR: The combined path does not exist: ' + targetfullpath)
@@ -100,8 +100,8 @@ logging.info('Opening Auditd source')
 
 aup = auparse.AuParser(auparse.AUSOURCE_DESCRIPTOR, 0);
 
-while not aup.first_record(): 
-    logging.debug('snoozing until next event')
+while not aup.first_record():
+    logging.debug('Snoozing until first event')
     time.sleep(10)
 
 logging.info('Entering main loop')
@@ -157,7 +157,7 @@ while True:
                 else:
                     logger.warning('WARNING: There was no chroot set for some reason')
                     chroot = '/'
-                    
+
                 logging.debug('Cleaning and sanitizing path')
                 targetfilefullpath = cleanuppaths(chroot,targetfilepath,targetfilename)
 
@@ -189,7 +189,7 @@ while True:
             else:
                 logging.info('INFO: Possible event match, but no matching UID was set for ' + cfg[cfgkeys[key]] + '.')
 
-    while not aup.parse_next_event(): 
+    while not aup.parse_next_event():
         #logging.debug('sleeping until next event')
         time.sleep(10)
 
