@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Written by Mike Adams
+# BSD License if ya care
+
 for i in $@ ; do
   if [ "${i}" == trace ]; then
     set -o xtrace
